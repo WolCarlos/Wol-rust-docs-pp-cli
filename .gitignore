@@ -1,0 +1,34 @@
+# Local analysis and downloaded documentation
+analysis/
+*.db
+*.db-shm
+*.db-wal
+
+# Local agent/project configuration (this is a public repository)
+/AGENTS.md
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+*_token.txt
+.cf_token
+certs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Tooling and OS
+.codegraph/
+.DS_Store
+Thumbs.db

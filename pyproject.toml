@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rust-docs-pp-cli"
+version = "0.1.0"
+description = "Offline, agent-native CLI for Rust and docs.rs documentation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "WolCarlos"}]
+keywords = ["rust", "documentation", "docs.rs", "cli", "ai-agents", "sqlite", "fts5"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Documentation",
+  "Topic :: Software Development",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/WolCarlos/Wol-rust-docs-pp-cli"
+Repository = "https://github.com/WolCarlos/Wol-rust-docs-pp-cli"
+Issues = "https://github.com/WolCarlos/Wol-rust-docs-pp-cli/issues"
+
+[project.scripts]
+rust-docs-pp-cli = "rust_docs_pp_cli.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rust_docs_pp_cli"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
