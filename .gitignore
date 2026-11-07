@@ -1,5 +1,6 @@
 # Local analysis and downloaded documentation
 analysis/
+/image/
 *.db
 *.db-shm
 *.db-wal

@@ -2,6 +2,10 @@
 
 **[English](README.md)** | **[Italiano](README.it.md)**
 
+<p align="center">
+  <img src="assets/brand/social-preview.jpg" alt="Wol-rust-docs-pp-cli — Offline Rust documentation for AI coding agents" width="100%">
+</p>
+
 Offline, agent-native CLI for the Rust Book, Rust Reference, Cargo Book, Rust by Example, the standard library, and crates documented on docs.rs.
 
 ```bash
@@ -204,6 +208,19 @@ rust-docs-pp-cli which "ownership" --db ./dev.db --json
 ```
 
 On Windows CMD, set `PYTHONPATH=src` before running the tests. The test suite is offline; live source formats are smoke-tested separately against official documentation.
+
+## Brand assets
+
+The project's visual assets are available under `assets/brand/`:
+
+| Asset | File | Dimensions |
+|---|---|---|
+| Square profile image | [`profile.jpg`](assets/brand/profile.jpg) | 1024×1024 |
+| Main mascot | [`mascot.jpg`](assets/brand/mascot.jpg) | 784×1168 |
+| Vertical mascot | [`mascot-tall.jpg`](assets/brand/mascot-tall.jpg) | 784×1168 |
+| GitHub social preview | [`social-preview.jpg`](assets/brand/social-preview.jpg) | 1280×640 |
+
+The images were generated with Grok from custom art-direction prompts for this project. The social-preview file also appears at the top of both README versions.
 
 ## Sources and inspiration
 
