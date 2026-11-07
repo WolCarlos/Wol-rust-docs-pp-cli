@@ -10,6 +10,8 @@ rust-docs-pp-cli examples "Vec::new" --language rust --json
 
 The CLI downloads public documentation into a local SQLite + FTS5 index. Lookup commands then work offline and return bounded search results or exactly the page/example requested, avoiding repeated web navigation and unnecessary tokens.
 
+Created and maintained by [WolCarlos](https://github.com/WolCarlos), with development assistance from **Kimi K3.1** by Moonshot AI.
+
 ## Features
 
 - `which` and `find`: ranked full-text page search with snippets.
@@ -49,6 +51,52 @@ On Windows PowerShell:
 ```powershell
 irm https://raw.githubusercontent.com/WolCarlos/Wol-rust-docs-pp-cli/main/install.ps1 | iex
 ```
+
+## AI coding-agent setup
+
+This CLI works with Claude Code, Codex, Cursor, and other coding agents that can execute local shell commands. It does not require an MCP server, an account, or API credentials.
+
+### 1. Install and verify the agent environment
+
+Install the CLI in the same environment used by the agent, then create and verify the local index:
+
+```bash
+uv tool install git+https://github.com/WolCarlos/Wol-rust-docs-pp-cli.git
+rust-docs-pp-cli version
+rust-docs-pp-cli sync
+rust-docs-pp-cli doctor --json
+rust-docs-pp-cli which "ownership and borrowing" --json
+```
+
+Optionally index the stable standard library and the crates used by the project:
+
+```bash
+rust-docs-pp-cli sync std
+rust-docs-pp-cli sync crate serde --max-pages 300
+rust-docs-pp-cli sync crate tokio --max-pages 300
+```
+
+If the command is not found, restart the agent terminal and verify that the uv/pip executable directory is on `PATH`. The agent needs permission to execute `rust-docs-pp-cli` and read/write its local database. For an isolated project index, use `--db /path/to/project.db` or set `RUST_DOCS_DB`; do not commit the generated database.
+
+### 2. Add the agent operating instructions
+
+Add the following block to the project's `AGENTS.md`, or to the equivalent persistent instructions for your coding agent. The block is generic and contains no machine-specific configuration.
+
+```markdown
+### Rust documentation
+
+For Rust language, standard library, Cargo, or crate questions, use `rust-docs-pp-cli` instead of relying on model memory alone:
+
+1. Run `rust-docs-pp-cli which "topic" --json` to find relevant pages.
+2. Run `rust-docs-pp-cli context "slug-or-url" --json` using a slug or URL returned by `which`; never invent slugs.
+3. For code examples, run `rust-docs-pp-cli examples "symbol or topic" --language rust --json`.
+4. For an unindexed crate, run `rust-docs-pp-cli sync crate "crate-name" --max-pages 300`, then add `--source crate:crate-name` to searches.
+5. Ground answers in the retrieved documentation and cite its URL. If results are empty or stale, run `rust-docs-pp-cli doctor --json`; refresh with `sync`, `sync std`, or the appropriate `sync crate` command.
+```
+
+### 3. Validate the configured workflow
+
+Ask the agent a question such as "How does ownership work in Rust?" and check that it calls `which` first, reads the selected page with `context`, and cites the official documentation URL. Use `doctor --json` to diagnose an empty or outdated index without inspecting local configuration files.
 
 ## Documentation sources
 
