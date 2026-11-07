@@ -1,5 +1,7 @@
 # rust-docs-pp-cli
 
+**[English](README.md)** | **[Italiano](README.it.md)**
+
 Offline, agent-native CLI for the Rust Book, Rust Reference, Cargo Book, Rust by Example, the standard library, and crates documented on docs.rs.
 
 ```bash
